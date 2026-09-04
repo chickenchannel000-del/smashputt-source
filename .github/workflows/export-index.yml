@@ -1,0 +1,22 @@
+name: Export SmashPutt index
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/export-index.yml"
+
+jobs:
+  export-index:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Upload index.js
+        uses: actions/upload-artifact@v4
+        with:
+          name: smashputt-index
+          path: index.js
+          if-no-files-found: error
